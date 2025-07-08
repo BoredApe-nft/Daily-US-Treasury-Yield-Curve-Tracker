@@ -22,8 +22,8 @@ def fetch_yield_data():
     df = pd.DataFrame([rates], columns=maturities)
     df.insert(0, "Date", today)
 
-    os.makedirs("/data", exist_ok=True)
-    df.to_csv(f"/data/{today}.csv", index=False)
+    os.makedirs("data", exist_ok=True)
+    df.to_csv(f"data/{today}.csv", index=False)
     print(f"Saved yield data for {today}.")
 
 if __name__ == "__main__":
