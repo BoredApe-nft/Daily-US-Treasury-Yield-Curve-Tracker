@@ -26,8 +26,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name 'BoredApe-nft'
+          git config user.email '218928132+BoredApe-nft@users.noreply.github.com'
           git add data/
           git commit -m "Daily yield curve update" || echo "No changes to commit"
 
