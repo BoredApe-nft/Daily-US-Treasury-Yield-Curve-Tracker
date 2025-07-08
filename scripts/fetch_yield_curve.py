@@ -2,7 +2,7 @@
 
 import requests
 import pandas as pd
-from datetime import date
+from datetime import datetime
 import os
 
 def fetch_yield_data():
@@ -17,13 +17,13 @@ def fetch_yield_data():
     maturities = ["1M", "3M", "6M", "1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "20Y", "30Y"]
     rates = [5.35, 5.30, 5.25, 5.15, 5.05, 5.00, 4.95, 4.90, 4.85, 4.80, 4.75]
 
-    today = date.today().isoformat()
+    today = datetime.now().isoformat()
 
     df = pd.DataFrame([rates], columns=maturities)
     df.insert(0, "Date", today)
 
-    os.makedirs("data", exist_ok=True)
-    df.to_csv(f"data/{today}.csv", index=False)
+    os.makedirs("../data", exist_ok=True)
+    df.to_csv(f"../data/{today}.csv", index=False)
     print(f"Saved yield data for {today}.")
 
 if __name__ == "__main__":
