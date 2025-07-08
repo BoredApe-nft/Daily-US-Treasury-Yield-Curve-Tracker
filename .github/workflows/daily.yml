@@ -1,0 +1,33 @@
+name: Daily Yield Curve Fetch
+
+on:
+  schedule:
+    - cron: '0 12 * * *'   # runs daily at 12:00 UTC
+  workflow_dispatch:        # allows manual trigger
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install pandas requests
+
+      - name: Run fetch script
+        run: python scripts/fetch_yield_curve.py
+
+      - name: Commit and push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/
+          git commit -m "Daily yield curve update" || echo "No changes to commit"
+          git push
