@@ -2,7 +2,7 @@ name: Daily Yield Curve Fetch
 
 on:
   schedule:
-    - cron: '0 2 * * *'   # runs daily at 12:00 UTC
+    - cron: '0 09 * * *'   # runs daily at 09:00 UTC
   workflow_dispatch:        # allows manual trigger
 
 jobs:
